@@ -59,18 +59,3 @@ const weatherSlice = createSlice({
 export const weatherActions = weatherSlice.actions;
 export { fetchWheatherData };
 export default weatherSlice.reducer;
-
-// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-// export const wheaderApi = createApi({
-//   reducerPath: "wheader",
-//   baseQuery: fetchBaseQuery({ baseUrl: "http://api.weatherapi.com/v1" }),
-//   endpoints: (builder) => ({
-//     getWheader: builder.query({
-//       query: (name) =>
-//         `/current.json?key=6621365961234e75bcc155734241508&q=${name}&aqi=no`,
-//     }),
-//   }),
-// });
-
-// export const { useGetWheaderQuery } = wheaderApi;
