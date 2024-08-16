@@ -15,7 +15,10 @@ const fetchWheatherData = createAsyncThunk(
       `http://api.weatherapi.com/v1/forecast.json?key=6621365961234e75bcc155734241508&q=${city}&days=6&aqi=no&alerts=no`
     )
       .then((res) => res.json())
-      .then((data) => data);
+      .then((data) => {
+        // console.log(data)
+        return data;
+      });
   }
 );
 
@@ -35,9 +38,15 @@ const weatherSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(fetchWheatherData.fulfilled, (state, action) => {
-      state.data = action.payload;
-      state.loading = false;
-      state.error = "";
+      if (action.payload.error) {
+        state.error = action.payload.error.message;
+        state.loading = false;
+        state.data = {};
+      } else {
+        state.data = action.payload;
+        state.loading = false;
+        state.error = "";
+      }
     });
     builder.addCase(fetchWheatherData.rejected, (state, action) => {
       state.loading = false;
